@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAE_313 | Student's Decision</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            background: url(https://images.unsplash.com/photo-1564868480822-32f714a0e763?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHRyYWN0b3J8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80) no-repeat center top/cover;
+            position: relative;
+            color: #f4f4f4;
+        }
+       
+        .container{
+            top: 15%;
+            height: 100vh;
+            position: relative;
+            margin: auto;
+            z-index: 2;
+        }
+        body::after{
+            content: '';
+            background: rgba(100, 100, 100, 0.8);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            /* box-shadow: inset 80px 90px 120px #000000, inset -80px -90px 120px #000000 ; */
+
+        }
+        button{
+            width: 60px;
+            height: 40px;
+            color: #fff;
+            border-radius: 7px;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        h1{
+            font-size: 4rem;
+        }
+        .cancel{
+            background-color: red;
+        }
+        .redcolor{
+            color: red;
+        }
+        .greencolor{
+            color: rgb(24, 230, 24);
+        }
+        .continue{
+            background-color: green;
+        }
+        .buttons{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 20px;
+        }
+        img{
+            margin-top: 20px;
+            width: 100px;
+            height: 100px;
+        }
+        h2{
+            font-family: monospace;
+            font-size: 6rem;
+            padding-top: 40px;
+            color:greenyellow;
+        }
+        #submit{
+            margin: 30px;
+            background-color: indigo;
+            border: none;
+            padding: 15px 20px;
+            font-size: 1.3rem;
+            color: rgb(27, 203, 216);
+        }
+        #submit:hover{
+            color: #fff;
+            background-color: red;
+        }
+        .container > p{
+            font-family: monospace;
+            font-size: 2rem;
+            letter-spacing: 19px;
+        }
+        footer{
+            position: fixed;
+            left: 15px;
+            font-size: 13px;
+            bottom: 10px;
+        }
+        a{
+            position: fixed;
+            top: 5px;
+            right: 5px;
+            background-color: hotpink;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        @media(max-width:768px){
+            h2{
+            font-size: 3rem;
+            padding-top: 30px;
+            letter-spacing: 5px
+            }
+            .container > p{
+            font-size: 1.3rem;
+            letter-spacing: 9px;
+            }
+            button{
+            width: 45px;
+            height: 35px;
+            border-radius: 4px;
+            font-size: 1.2rem;
+            margin-bottom: 7px;
+            }
+            a{
+            padding: 10px 7px;
+            font-size: 13px;
+        
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="https://wa.me/+2348143783218">Contact Admin</a>
+        <img src="https://lh3.googleusercontent.com/proxy/c45Sp-SO9I1G7zS9IOC44v82dWH1a8yUQbrWF7_lB8jq1VuGQK5PG0aiekvX5DeSnJUf-4FTGqUAeurcRv0XqZECzql897kKX647ew-_7nkCXiqmuMw2kKZTOSeB2weLksqnwu9z-EuOnrylc8VLhfJDeqsfYECc5nX5dr6B67Zb" alt="">
+        <h1><span class="cancelCounter">0</span> : <span class="continueCounter">0</span></h1>
+        <div class="buttons">
+            <div></div>
+            <div>
+                <button class="cancel">X</button>
+                <p>PROSTPONE</p>
+            </div>
+            <div>
+                <button class="continue">O</button>
+                <p>SUBMIT TOMORROW</p>
+            </div>
+            <div></div>
+        </div>
+        <h2>TAE_313 PRACTICAL REPORT</h2>
+        <p>STUDENT'S DECISION</p>
+        <input type="checkbox" checked> Save Response
+        <input type="submit" id="submit" value="Submit">
+        <footer>Copyright &copy; aadio652, 2021</footer>
+    </div>
+    <script>
+        var h2 = document.querySelector('h2')
+        var button = document.querySelector('button')
+        var cancelBtn = document.querySelector('.cancel');
+        var continueBtn = document.querySelector('.continue');
+        var cancelCounter = document.querySelector('.cancelCounter');
+        var continueCounter = document.querySelector('.continueCounter');
+        var cancelDisplay = 0;
+        var continueDisplay = 0;
+        var submit = document.querySelector('#submit');
+        submit.addEventListener('click', msg)
+        function msg(e){
+            if(cancelDisplay > continueDisplay){
+                h2.textContent ='YOU ARE LAZY !!!';
+                h2.classList.add('redcolor');
+            }else if(continueDisplay > cancelDisplay){
+                    h2.textContent ='EXCELLENT !!!';
+                }
+                cancelCounter.textContent = 0;
+                continueCounter.textContent = 0;
+                cancelCounter.classList.remove('redcolor');
+                continueCounter.classList.remove('greencolor');
+
+            
+        }
+        
+
+        cancelBtn.addEventListener('click', Addccl);
+        function Addccl(e){
+            e.preventDefault();
+                cancelDisplay+= 1;
+                cancelCounter.textContent = cancelDisplay;
+                cancelCounter.classList.add('redcolor')
+              
+        };
+        continueBtn.addEventListener('click', Addcont);
+        function Addcont(e){
+            e.preventDefault();
+                continueDisplay+= 1;
+                continueCounter.textContent = continueDisplay;
+                continueCounter.classList.add('greencolor')
+              
+        };
+    </script>
+</body>
+</html>
